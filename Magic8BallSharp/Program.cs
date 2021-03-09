@@ -10,34 +10,26 @@ namespace Magic8BallSharp
     {
         static void Main(string[] args)
         {
-        l_begin:
-            string uInput = String.Empty;
-            Console.WriteLine("Ask me anything.");
-            uInput = Console.ReadLine();
+            while (true) {
+                string uInput = String.Empty;
+                Console.WriteLine("Ask me anything.");
+                uInput = Console.ReadLine();
 
-            if (uInput == "")
-            {
-                Console.WriteLine("Please ask me a question!");
-                goto l_begin;
-            }
-            else
-            {
-                Console.WriteLine(fetchResponse());
-            }
+                if (uInput == "")
+                {
+                    Console.WriteLine("Please ask me a question!");
+                    continue;
+                }
+                else
+                    Console.WriteLine(fetchResponse());
 
-            Console.WriteLine("Would you like to ask me something else? (Y/N)");
-            uInput = Console.ReadLine();
+                Console.WriteLine("Would you like to ask me something else? (Y/N)");
+                uInput = Console.ReadLine();
 
-            if (uInput.ToUpper() == "Y")
-            {
-                goto l_begin;
-            }
-            else
-            {
-                goto l_end;
+                if (uInput.ToUpper() != "Y")
+                    break;
             }
 
-        l_end:
             Console.ReadKey();
             return;
         }
@@ -53,7 +45,7 @@ namespace Magic8BallSharp
                 "My reply is no.", "My sources say no.", "Outlook not so good.", "Very doubtful."
             };
 
-            return magicResponsePool[rand.Next(0, magicResponsePool.Count())];
+            return magicResponsePool[rand.Next(0, magicResponsePool.Count() - 1)];
         }
     }
 }
